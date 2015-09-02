@@ -1,4 +1,4 @@
-FROM tomcat:latest
+FROM tomcat:8-jre8
 
 MAINTAINER warren.strange@gmail.com
 
