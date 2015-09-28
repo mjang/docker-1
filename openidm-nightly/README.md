@@ -2,8 +2,11 @@
 
 Mount your custom config on /opt/openidm/conf.
 
+
+
 Within the container OpenIDM is on port 8080
 
+Configured to use a Postgres repo at hostname 'postgres'
 
 # Example docker command:
 
