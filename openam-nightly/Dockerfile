@@ -1,6 +1,6 @@
 FROM wstrange/openam-base-nightly:latest
 
-MAINTAINER warren.strange@gmail.com
+MAINTAINER warren.strange@gmail.com 
 
 
 EXPOSE 8080
