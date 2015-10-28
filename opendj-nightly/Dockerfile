@@ -21,5 +21,7 @@ EXPOSE 389 636 4444
 # And then update instance.loc to that volume. This would let us seperate out the bits that need persistence
 # These dirs need to be copied to instance.loc:  config	db	locks	logs
 
-CMD  cd /opt/opendj && /opt/opendj/kuberun.sh
+WORKDIR /opt/opendj
+
+CMD  ["/opt/opendj/kuberun.sh"]
 
