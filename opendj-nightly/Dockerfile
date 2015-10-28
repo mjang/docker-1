@@ -13,4 +13,8 @@ RUN unzip opendj.zip && ./opendj/setup --cli -p 389 --ldapsPort 636 --enableStar
 
 EXPOSE 389 636 4444
 
+# Todo: Do we want to copy the writable dirs to a common volume
+# And then update instance.loc to that volume. This would let us seperate out the bits that need persistence
+# These dirs need to be copied to instance.loc:  config	db	locks	logs
+
 CMD  /opt/opendj/bin/start-ds && tail -f /dev/null
