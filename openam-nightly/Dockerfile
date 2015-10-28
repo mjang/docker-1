@@ -8,8 +8,6 @@ WORKDIR $CATALINA_HOME
 
 EXPOSE 8080
 
-ADD setenv.sh bin/
-
 # download openam nightly build war
 # Trick taken from wadahiro/docker-openam-nightly!
 RUN curl http://download.forgerock.org/downloads/openam/openam_link.js | \
