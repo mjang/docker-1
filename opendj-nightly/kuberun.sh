@@ -6,6 +6,8 @@
 # Then we can hae k8 mount a data volume on that root - to give us
 # persistence across restarts of OpenDJ
 
+cd /opt/opendj
+
 # Instance dir does not exist?
 if [ ! -d instance ] ; then
   mkdir instance
