@@ -13,7 +13,7 @@ RUN unzip opendj.zip && ./opendj/setup --cli -p 389 --ldapsPort 636 --enableStar
     && rm opendj.zip && /opt/opendj/bin/stop-ds
 
 
-ADD kuberun.sh /opt/opendj/kuberun.sh
+ADD run.sh /opt/opendj/run.sh
 
 EXPOSE 389 636 4444
 
@@ -21,7 +21,5 @@ EXPOSE 389 636 4444
 # And then update instance.loc to that volume. This would let us seperate out the bits that need persistence
 # These dirs need to be copied to instance.loc:  config	db	locks	logs
 
-#WORKDIR /opt/opendj
-
-CMD  ["/opt/opendj/kuberun.sh"]
+CMD  ["/opt/opendj/run.sh"]
 
