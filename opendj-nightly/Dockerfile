@@ -10,7 +10,8 @@ RUN curl https://forgerock.org/djs/opendjrel.js?948497823 | grep -o "http://.*\.
 
 RUN unzip opendj.zip && ./opendj/setup --cli -p 389 --ldapsPort 636 --enableStartTLS --generateSelfSignedCertificate \
     --sampleData 100 --baseDN "dc=example,dc=com" -h localhost --rootUserPassword password --acceptLicense --no-prompt \
-    && rm opendj.zip
+    && rm opendj.zip && /opt/opendj/bin/stop-ds
+
 
 ADD kuberun.sh /opt/opendj
 
