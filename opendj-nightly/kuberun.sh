@@ -11,7 +11,8 @@ cd /opt/opendj
 # Instance dir does not exist?
 if [ ! -d instance ] ; then
   mkdir instance
-  mv config/ db/  instance
+  mv config/ instance
+  mv db/ instance
   mkdir instance/logs
   mkdir instance/locks
   echo "./instance" > instance.loc
