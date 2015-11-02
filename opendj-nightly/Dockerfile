@@ -2,18 +2,11 @@ FROM java:8
 
 MAINTAINER warren.strange@gmail.com
 
-WORKDIR /opt
-
-
-
-RUN curl https://forgerock.org/djs/opendjrel.js?948497823 | grep -o "http://.*\.zip" | tail -1 | xargs curl -o opendj.zip
-
-RUN unzip opendj.zip && ./opendj/setup --cli -p 389 --ldapsPort 636 --enableStartTLS --generateSelfSignedCertificate \
-    --sampleData 100 --baseDN "dc=example,dc=com" -h localhost --rootUserPassword password --acceptLicense --no-prompt \
-    && rm opendj.zip && /opt/opendj/bin/stop-ds
-
+WORKDIR /opt/opendj
 
 ADD run.sh /opt/opendj/run.sh
+
+VOLUME ["/installers", "/opt/opendj/instance/logs", "/opt/opendj/instance/db"]
 
 EXPOSE 389 636 4444
 
@@ -22,4 +15,3 @@ EXPOSE 389 636 4444
 # These dirs need to be copied to instance.loc:  config	db	locks	logs
 
 CMD  ["/opt/opendj/run.sh"]
-
