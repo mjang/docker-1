@@ -1,6 +1,7 @@
 
 
-DIRECTIONS FROM OpenIDM distro. These are not used in this Docker build.
+DIRECTIONS included FROM OpenIDM distro. These are NOT used in this Docker build - but is here for reference:
+
 
 
 To initialize your PostgreSQL 9.3 (or greater) OpenIDM repository, follow these steps:
