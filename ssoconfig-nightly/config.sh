@@ -5,6 +5,8 @@ cd /var/tmp
 C=openam-configurator-tool*.jar
 
 # todo: Put a wait loop for the openam-svc-a:80 to come up before running
+# The URL should be passed as an env param
+
 
 echo configuring first instance
 

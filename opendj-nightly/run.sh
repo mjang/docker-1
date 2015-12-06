@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-
-# This startup script is meant to be used in a Kubernetes environment
+# Run the OpenDJ server
 # The idea is to consolidate all of the writable DJ directories to
-# a single directory root, and update DJ's instance.loc file to point to that root
+# a single instance directory root, and update DJ's instance.loc file to point to that root
 # This allows us to to mount a data volume on that root which will give us
-# persistence across restarts of OpenDJ
+# persistence across restarts of OpenDJ. For Docker - mount a data volume on /opt/opendj/instance. 
+# For Kubernetes mount a PV
 
 cd /opt/opendj
 
 # Instance dir does not exist?
 if [ ! -d instance/config ] ; then
   # Consolidate 
-  mkdir instance
+  mkdir -p instance
   mv config/ instance
   mv db/ instance
   mkdir instance/logs

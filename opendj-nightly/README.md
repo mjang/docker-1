@@ -1,12 +1,21 @@
 ForgeRock OpenDJ nightly build
 
+Listens on 389/636/4444
 
-The writable directories (persisted data) are collected up under /opt/opendj/instance
+Default password is 'password'
 
-To run in Docker (example)
+All writable directories (persisted data) are collected up under /opt/opendj/instance
+
+To run inwith Docker (example)
+```
 mkdir dj    # Make an instance dir to perist data
-# Run Docker - mounting the local dj/ dir on the instance directory
-docker run -i -t -v dj:/opt/opendj/instance wstrange/opendj-nightly:latest
+docker run -i -t -v `pwd`/dj:/opt/opendj/instance wstrange/opendj-nightly:latest
+```
 
 For Kubernetes mount a PV on /opt/opendj/instance
+
+If you choose not to mount a persistent volume OpenDJ will start 
+
+TODO: 
+Create a strategy for changing the password.  If a secrets volume is present (k8), use that to set the DJ password.
 
