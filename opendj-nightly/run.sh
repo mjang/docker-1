@@ -9,15 +9,14 @@
 cd /opt/opendj
 
 # Instance dir does not exist?
-if [ ! -d instance ] ; then
-  # shut down OpenDJ before moving contents
-  ./bin/stop-ds
+if [ ! -d instance/config ] ; then
   # Consolidate 
   mkdir instance
   mv config/ instance
   mv db/ instance
   mkdir instance/logs
   mkdir instance/locks
+  cp -r lib/extensions/ instance/extensions 
   echo "./instance" > instance.loc
 fi
 
