@@ -10,6 +10,9 @@ cd /opt/opendj
 
 # Instance dir does not exist?
 if [ ! -d instance ] ; then
+  # shut down OpenDJ before moving contents
+  ./bin/stop-ds
+  # Consolidate 
   mkdir instance
   mv config/ instance
   mv db/ instance
@@ -18,6 +21,6 @@ if [ ! -d instance ] ; then
   echo "./instance" > instance.loc
 fi
 
-bin/start-ds
+./bin/start-ds
 
 tail -f instance/logs/server.out

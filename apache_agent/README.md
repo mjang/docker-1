@@ -38,3 +38,21 @@ com.forgerock.agents.config.hostmap =
 org.forgerock.agents.config.tls = 
 org.forgerock.agents.config.keepalive.disable = 
 
+
+List of bootstrap/required  props from Mareks
+com.sun.identity.agents.config.repository.location
+com.sun.identity.agents.config.naming.url
+com.sun.identity.agents.config.organization.name
+com.sun.identity.agents.config.username
+com.sun.identity.agents.config.password 
+com.sun.identity.agents.config.key
+com.sun.identity.agents.config.connect.timeout
+org.forgerock.agents.config.postdata.preserve.dir
+com.forgerock.agents.config.cert.*
+com.sun.identity.agents.config.trust.server.certs
+com.forgerock.agents.config.ciphers
+com.forgerock.agents.config.hostmap
+org.forgerock.agents.config.tls
+org.forgerock.agents.config.keepalive.disable
+com.sun.identity.agents.config.local.logfile
+com.sun.identity.agents.config.local.audit.logfile
