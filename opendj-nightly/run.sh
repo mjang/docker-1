@@ -14,6 +14,7 @@ cd /opt/opendj
 # Instance dir does not exist?
 if [ ! -d instances/instance1/config ] ; then
   # Copy the template
+  mkdir -p instances/instance1
   echo Instance Directory is empty. Creating new instance from template
   cp -r instances/template/* instances/instance1
   echo "./instances/instance1" > instance.loc
