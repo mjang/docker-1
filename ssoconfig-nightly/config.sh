@@ -2,22 +2,18 @@
 
 cd /var/tmp
 
-C=openam-configurator-tool*.jar
+# Optionally pass in URL of OpenAM server
 
-# todo: Put a wait loop for the openam-svc-a:80 to come up before running
-# The URL should be passed as an env param
+URL=${OPENAM_URL:-"http://openam-svc-a:80/openam"}
 
+T="$URL/config/options.htm"
 
-echo configuring first instance
+echo Configuring OpenAM $URL 
 
-java -jar $C -f master.properties
+until $(curl --output /dev/null --silent --head --fail $T); do
+	echo "Waiting for OpenAM server at $URL "
+    sleep 5
+done
 
-sleep 30
-echo Configuring second instance
+java -jar openam-configurator-tool*.jar -f master.properties
 
-java -jar $C -f second.properties
-
-echo done config
-
-# todo - take this out when we get it right. This is to allow us to log on to the container.
-sleep 1000
