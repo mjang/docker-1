@@ -2,7 +2,7 @@
 
 Docker Image to install the OpenAM 4.x Agent for Apache 2.4 httpd server
 
-This has not been tested yet - and most certainly needs updating to make it functional
+This has not been tested yet - and most certainly needs work to make it functional
 
 The strategy is to have this image bootstrap apache + the agent with just enough configuration so  it can locate and connect to an OpenAM server. The remaining agent properties will be set by the OpenAM server. 
 
