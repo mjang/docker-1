@@ -14,6 +14,8 @@ until $(curl --output /dev/null --silent --head --fail $T); do
 	echo "Waiting for OpenAM server at $URL "
     sleep 5
 done
+# Sleep an additonal 10 in case DJ is not quite up yet
+sleep 10
 
 java -jar openam-configurator-tool*.jar -f master.properties
 

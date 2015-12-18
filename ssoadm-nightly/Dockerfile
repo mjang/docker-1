@@ -8,5 +8,7 @@ WORKDIR /opt/ssoadm
 # OpenAM server needs to be running? At least DJ instance needs to be up (ssoadm setup fails otherwise)
 # Cant do this... Will have to configure ssoadm at runtime
 #RUN /opt/ssoadm/setup --acceptLicense --path /root/openam
-COPY config.sh /opt/ssoadm/config.sh
+ADD config.sh /opt/ssoadm/config.sh
+ADD run-ssoadm /opt/ssoadm/run-ssoadm
+
 CMD ["/opt/ssoadm/config.sh"]

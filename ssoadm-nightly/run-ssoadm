@@ -1,0 +1,56 @@
+#!/bin/bash
+# Modified version of ssoadm command that includes -Dsite to server option
+# Right now this is hard coded - super ugly
+# This also optionally looks for a secret password on a k8s secret volume, and uses that as the amadmin pw
+
+TOOLS_HOME="/opt/ssoadm"
+EXT_CLASSPATH=$CLASSPATH
+
+cd $(TOOLS_HOME)
+
+# Check if ssoadm has been setup yet
+if [ ! -d openam ]; then 
+    echo "Setting up ssoadm for the first time"
+    ./setup --path /root/openam --debug /opt/ssoadm/debug \
+	   --log /opt/ssoadm/log --acceptLicense 	
+fi
+
+# Check for secrets volume
+if [ -a /secrets/amadmin.pw ]; then 
+    echo "Copying amadmin password"
+    cat /secrets/amadmin.pw >pw
+    chmod 0400 pw
+fi
+
+LIB_CP=
+for JAR in ${TOOLS_HOME}/lib/*.jar; do
+    LIB_CP=${LIB_CP}:${JAR}
+done
+
+CLASSPATH="/root/openam"
+CLASSPATH="$CLASSPATH:$TOOLS_HOME/classes:$TOOLS_HOME/resources"
+CLASSPATH="$CLASSPATH:$LIB_CP"
+
+if [ -n "$EXT_CLASSPATH" ] ; then
+    CLASSPATH=$EXT_CLASSPATH:$CLASSPATH
+fi              
+$JAVA_HOME/bin/java -Xms256m -Xmx512m -cp "$CLASSPATH" \
+    $DEBUG \
+    -D"sun.net.client.defaultConnectTimeout=3000" \
+    -D"openam.naming.sitemonitor.disabled=true" \
+    -D"com.iplanet.am.serverMode=false" \
+    -D"com.sun.identity.sm.notification.enabled=false" \
+    -D"bootstrap.dir=/root/openam" \
+    -D"com.iplanet.services.debug.directory=/opt/ssoadm/debug" \
+    -D"com.sun.identity.log.dir=/opt/ssoadm/log" \
+    -D"definitionFiles=com.sun.identity.cli.AccessManager,com.sun.identity.federation.cli.FederationManager" \
+    -D"commandName=ssoadm" \
+    -D"amconfig=AMConfig" \
+    -D"java.version.current=java.vm.version" \
+    -D"java.version.expected=1.4+" \
+    -D"am.version.current=com.iplanet.am.version" \
+    -D"am.version.expected=OpenAM 13.0.0-SNAPSHOT" \
+    -D"com.iplanet.am.sdk.package=com.iplanet.am.sdk.remote" \
+    -D"com.sun.identity.idm.remote.notification.enabled=false" \
+-D"com.iplanet.am.naming.map.site.to.server=http://openam.example.com:80/openam=http://openam-svc-a:80/openam" \
+    com.sun.identity.cli.CommandManager "$@"
