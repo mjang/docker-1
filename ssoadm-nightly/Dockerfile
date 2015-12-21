@@ -4,11 +4,13 @@ ADD https://raw.githubusercontent.com/ForgeRock/frstack/master/bin/getnightly.sh
 RUN sh /tmp/getnightly.sh ssoadm && unzip staging/ssoadmintools.zip -d /opt/ssoadm && rm -fr /opt/staging
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 WORKDIR /opt/ssoadm
-# Note to self....
-# OpenAM server needs to be running? At least DJ instance needs to be up (ssoadm setup fails otherwise)
-# Cant do this... Will have to configure ssoadm at runtime
+#
+# The OpenAM server needs to be running for ssoadm to install
+# So we have to delay the setup until after the container is created.
+# (At least DJ instance needs to be up  -ssoadm setup fails otherwise)
+# The setup below does not work....
 #RUN /opt/ssoadm/setup --acceptLicense --path /root/openam
 ADD config.sh /opt/ssoadm/config.sh
-ADD run-ssoadm /opt/ssoadm/run-ssoadm
+ADD ssoadm /opt/ssoadm/ssoadm
 
 CMD ["/opt/ssoadm/config.sh"]

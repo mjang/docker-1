@@ -4,6 +4,6 @@
 cd /opt/ssoadm
 
 
-# todo - take this out when we get it right. This is to allow us to log on to the container
-# And manually run ssoadm
+# todo: Add some process that loops through a series of config files and applies them
+# This should loop forever so the container does not exit
 while true; do sleep 1000; done

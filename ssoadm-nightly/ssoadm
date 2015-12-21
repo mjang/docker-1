@@ -1,14 +1,18 @@
 #!/bin/bash
-# Modified version of ssoadm command that includes -Dsite to server option
-# Right now this is hard coded - super ugly
-# This also optionally looks for a secret password on a k8s secret volume, and uses that as the amadmin pw
+# Modified version of ssoadm command 
+# This 
+# 1) checks to see if ssoadm is setup, and if not runs set up
+# 2) Adds  -Dsite to server option. Right now this is hard coded - super ugly - fix me
+# 3) This also optionally looks for a secret password on a k8s secret volume.
+#   This will get copied to /opt/ssoadm pw. Use ths for the -p password option.
+
 
 TOOLS_HOME="/opt/ssoadm"
 EXT_CLASSPATH=$CLASSPATH
 
 cd $(TOOLS_HOME)
 
-# Check if ssoadm has been setup yet
+# Check if ssoadm has been setup yet. Assumes openam install dir is on /root/openam
 if [ ! -d openam ]; then 
     echo "Setting up ssoadm for the first time"
     ./setup --path /root/openam --debug /opt/ssoadm/debug \
