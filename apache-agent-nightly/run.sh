@@ -13,8 +13,11 @@
 
 
  cd /opt/web_agents/apache24_agent/bin
- AGENT_PW=`./agentadmin --p $AGENT_PW_KEY $AGENT_PW`
  
+ # run agentadmin to encode password with key. awk trick is needed because output is a full text message - not the value
+ export AGENT_PW=`./agentadmin --p $AGENT_PW_KEY $AGENT_PW |  awk 'NF>1{print $NF}'`
+ 
+ # For debugging
  echo encrytped password is $AGENT_PW
 
 # Run sed on agent.conf to replace any vars
@@ -25,15 +28,17 @@ FILE=agent.conf
 # Override any vars in the agent.conf file
 cp $FILE "$FILE.bak"
 cat $FILE | \
-   sed "s|AGENT_PW|$AGENT_PW|"  | \
-   sed "s|AGENT_USER|$AGENT_USER|" | \
-   sed "s|AGENT_NAMING_URL|$AGENT_NAMING_URL|" \
+  sed "s|AGENT_PW|$AGENT_PW|"  | \
+  sed "s|AGENT_PW_KEY|$AGENT_PW_KEY|"  | \
+  sed "s/AGENT_USER/$AGENT_USER/" | \
+  sed "s+AGENT_NAMING_URL+$AGENT_NAMING_URL+" \
    > $FILE.new
  
  mv $FILE.new $FILE  
  
- 
 
 # todo: we should also concat the output of the agent debug log to stdout
 # In a shell you can run { cmd1; cmd2; } also -see tail -f --follow=name --retry filename
-echo httpd-foreground
+httpd-foreground
+
+

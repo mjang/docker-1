@@ -28,6 +28,8 @@ RUN /opt/web_agents/apache24_agent/bin/agentadmin --s /usr/local/apache2/conf/ht
         "apacheagent" \
         /var/tmp/pw.txt \
         --changeOwner --acceptLicence --forceInstall
+        
+COPY agent.conf /opt/web_agents/apache24_agent/instances/agent_1/config/agent.conf        
 COPY run.sh /var/tmp/
 
 # Inherit CMD from Parent httpd:2.4 
