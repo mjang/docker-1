@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-#cd /var/tmp
+# Container puts everything in /var/tmp
+cd /var/tmp
 
 CONFIG=/config/openam
 
@@ -13,7 +14,7 @@ fi
 
 function wait_for_openam
 {
-	T="$1/config/options.htm"
+	T="$1$2/config/options.htm"
 
 	until $(curl --output /dev/null --silent --head --fail $T); do
 		echo "Waiting for OpenAM server at $T "
@@ -23,8 +24,6 @@ function wait_for_openam
 	sleep 10
 }
 
-
-
 for file in $CONFIG/*.properties
 do
 		echo "Applying property file $file"
@@ -32,7 +31,7 @@ do
 		# so you will see an error -but it serves to set the SERVER_URL arg
 		# we need
 		source $file
-		wait_for_openam   $SERVER_URL
+		wait_for_openam   $SERVER_URL $DEPLOYMENT_URI
 		echo "Running Configurator"
 		java -jar openam-configurator-tool*.jar -f $file
 done
