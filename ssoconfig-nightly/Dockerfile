@@ -11,9 +11,7 @@ RUN curl http://maven.forgerock.org/repo/simple/snapshots/org/forgerock/openam/o
 RUN  unzip configurator.zip
 
 
-COPY master.properties /var/tmp/
-COPY second.properties /var/tmp/
+COPY default.properties /var/tmp/
 COPY config.sh /var/tmp/
 
 CMD ["/var/tmp/config.sh"]
-
