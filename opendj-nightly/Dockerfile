@@ -9,7 +9,7 @@ WORKDIR /opt
 # RUN curl https://forgerock.org/djs/opendjrel.js?948497823 | grep -o "http://.*\.zip" | tail -1 | xargs curl -o opendj.zip && unzip opendj.zip && rm opendj.zip
 
 ADD https://raw.githubusercontent.com/ForgeRock/frstack/master/bin/getnightly.sh  /tmp/getnightly.sh
-RUN sh /tmp/getnightly.sh opendj && unzip staging/opendj.zip -d /opt/opendj && rm -fr /opt/staging
+RUN sh /tmp/getnightly.sh opendj && unzip staging/opendj.zip -d /opt/ && rm -fr /opt/staging
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
 # Creating instance.loc consolidates the writable directories under one root
@@ -19,8 +19,8 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 RUN echo "/opt/opendj/instances/template" > /opt/opendj/instance.loc  && \
     mkdir -p /opt/opendj/instances/template/lib/extensions
 
-RUN ./opendj/setup --cli -p 389 --ldapsPort 636 --enableStartTLS --generateSelfSignedCertificate \
-    --sampleData 5 --baseDN "dc=example,dc=com" -h localhost --rootUserPassword password --acceptLicense --no-prompt --doNotStart
+# Note - for some reason the entire command must be quoted or DJ launches the GUI
+RUN /opt/opendj/setup --cli -p 389 --ldapsPort 636 --enableStartTLS --generateSelfSignedCertificate  --sampleData 5 --baseDN "dc=example,dc=com" -h localhost --rootUserPassword password --acceptLicense --no-prompt --doNotStart
 
 EXPOSE 389 636 4444
 
