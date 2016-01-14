@@ -20,8 +20,8 @@ function wait_for_openam
 		echo "Waiting for OpenAM server at $T "
     sleep 5
 	done
-	# Sleep an additonal 10 in case DJ is not quite up yet
-	sleep 10
+	# Sleep an additonal time in case DJ is not quite up yet
+	sleep 20
 }
 
 for file in $CONFIG/*.properties
