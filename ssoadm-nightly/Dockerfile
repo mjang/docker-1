@@ -8,7 +8,7 @@ WORKDIR /opt/ssoadm
 # The OpenAM server needs to be running for ssoadm to install
 # So we have to delay the setup until after the container is created.
 # (At least DJ instance needs to be up  -ssoadm setup fails otherwise)
-# The setup below does not work....
+# The setup command below will *NOT* work....
 #RUN /opt/ssoadm/setup --acceptLicense --path /root/openam
 ADD config.sh /opt/ssoadm/config.sh
 ADD ssoadm /opt/ssoadm/ssoadm

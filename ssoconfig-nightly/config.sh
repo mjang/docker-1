@@ -12,6 +12,7 @@ if [ ! -d /config/openam ]; then
 fi
 
 
+
 function wait_for_openam
 {
 	T="$1$2/config/options.htm"
@@ -21,8 +22,14 @@ function wait_for_openam
     sleep 5
 	done
 	# Sleep an additonal time in case DJ is not quite up yet
-	sleep 20
+	echo "About to begin configuration in 30 seconds"
+	sleep 30
 }
+
+# Sleep a little
+# This seems to improve the reliability of the configuration
+# If ssoconfig is run too soon we get AM install errors
+sleep 60
 
 for file in $CONFIG/*.properties
 do
