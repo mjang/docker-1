@@ -14,10 +14,11 @@ RUN curl -o /tmp/getnightly.sh https://raw.githubusercontent.com/ForgeRock/frsta
    chmod +x /tmp/getnightly.sh && \
    /tmp/getnightly.sh openidm && \
    unzip staging/openidm.zip && \
-   rm /opt/openidm/conf/repo.orientdb.json && \
    rm -f staging/openidm.zip
 
-ADD repo.jdbc.json /opt/openidm/conf/repo.jdbc.json
+# Uncomment to use postgres repo
+# Todo: This needs review after 4.x upgrade
+# ADD repo.jdbc.json /opt/openidm/conf/repo.jdbc.json
 
 VOLUME ["/opt/openidm/conf"]
 

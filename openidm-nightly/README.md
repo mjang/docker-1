@@ -10,9 +10,7 @@ Configured to use a Postgres repo at hostname 'postgres'
 
 # Example docker command:
 
+Run OpenIDM, mapping the containers port 8080 to the docker hosts 9080
 ```
-docker run -p 8080:8080 wstrange/openidm-nightly
+docker run -d -p 9080:8080 wstrange/openidm-nightly
 ```
-
-
-
