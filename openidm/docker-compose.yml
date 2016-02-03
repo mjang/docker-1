@@ -1,0 +1,16 @@
+openidm-nightly:
+  build: .
+  ports:
+   - "5000:8080"
+  # volumes:
+  #  - /var/tmp/conf:/opt/openidm/conf
+  links:
+   - openidm-postgres:postgres
+openidm-postgres:
+  image: wstrange/openidm-postgres
+  volumes:
+    - /var/tmp/pg:/var/lib/postgresql/data/pgdata
+  environment:
+    PGDATA: /var/lib/postgresql/data/pgdata
+    POSTGRES_PASSWORD: openidm
+    POSTGRES_USER: openidm
