@@ -9,7 +9,7 @@ EXPOSE 8080
 
 
 # download openidm nightly build and unzip
-ADD openidm.zip /var/tmp
+ADD openidm.zip /var/tmp/openidm.zip
 
 RUN unzip /var/tmp/openidm.zip && \
    rm -f /var/tmp/openidm.zip
