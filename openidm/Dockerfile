@@ -9,12 +9,10 @@ EXPOSE 8080
 
 
 # download openidm nightly build and unzip
+ADD openidm.zip /var/tmp
 
-RUN curl -o /tmp/getnightly.sh https://raw.githubusercontent.com/ForgeRock/frstack/master/bin/getnightly.sh && \
-   chmod +x /tmp/getnightly.sh && \
-   /tmp/getnightly.sh openidm && \
-   unzip staging/openidm.zip && \
-   rm -f staging/openidm.zip
+RUN unzip /var/tmp/openidm.zip && \
+   rm -f /var/tmp/openidm.zip
 
 # Uncomment to use postgres repo
 ADD repo.jdbc.json /opt/openidm/conf/repo.jdbc.json
