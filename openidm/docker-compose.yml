@@ -1,13 +1,12 @@
+# Sample docker-compose that will run OpenIDM and use Postgres as the repo
 openidm-nightly:
-  build: .
+  image: forgerock/openidm
   ports:
    - "5000:8080"
-  # volumes:
-  #  - /var/tmp/conf:/opt/openidm/conf
   links:
    - openidm-postgres:postgres
 openidm-postgres:
-  image: wstrange/openidm-postgres
+  image: forgerock/openidm-postgres
   volumes:
     - /var/tmp/pg:/var/lib/postgresql/data/pgdata
   environment:

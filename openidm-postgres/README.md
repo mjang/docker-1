@@ -3,7 +3,7 @@
 Extends the base postgres image with the schema required for OpenIDM
 
 
-The sql files are copied in from OpenIDM 4.0 snapshot (as of Sept 2015).
+The sql files are copied in from OpenIDM 4.1 snapshot (as of Feb 2016).
 We should probably grab these dynamically from a current build and tag this image
 
 createuser.psql is not really needed as the Docker image creates the user. It is here for reference.
