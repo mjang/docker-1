@@ -4,12 +4,8 @@ MAINTAINER warren.strange@gmail.com
 
 WORKDIR /opt
 
-# Fetch the latest nightly build
-# Update to use the getnightly script
-# RUN curl https://forgerock.org/djs/opendjrel.js?948497823 | grep -o "http://.*\.zip" | tail -1 | xargs curl -o opendj.zip && unzip opendj.zip && rm opendj.zip
-
-ADD https://raw.githubusercontent.com/ForgeRock/frstack/master/bin/getnightly.sh  /tmp/getnightly.sh
-RUN sh /tmp/getnightly.sh opendj && unzip staging/opendj.zip -d /opt/ && rm -fr /opt/staging
+ADD opendj.zip /var/tmp/opendj.zip
+RUN unzip /var/tmp/opendj.zip -d /opt/ && rm -fr /var/tmp/opendj.zip
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
 # Creating instance.loc consolidates the writable directories under one root
