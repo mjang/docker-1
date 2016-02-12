@@ -13,4 +13,4 @@ If /config/openam does not exist, a default configuration will be used. It is
 probably not what you want.
 
 In a Kubernetes environment /config/openam should probably come from a
-gitRepo volume.
+gitRepo volume. Right now it is a sidecar container that does a git clone
