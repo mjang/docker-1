@@ -1,10 +1,7 @@
 # Sample docker-compose that will run OpenIDM and use Postgres as the repo
-openidm-nightly:
-  image: forgerock/openidm
-  ports:
-   - "5000:8080"
-  links:
-   - openidm-postgres:postgres
+
+# The postgres image below will save the data to the host's /var/tmp/pg
+# This will give you persistence across restarts
 openidm-postgres:
   image: forgerock/openidm-postgres
   volumes:
@@ -13,3 +10,10 @@ openidm-postgres:
     PGDATA: /var/lib/postgresql/data/pgdata
     POSTGRES_PASSWORD: openidm
     POSTGRES_USER: openidm
+# Run openidm - linked to postgres container
+openidm-nightly:
+  image: forgerock/openidm
+  ports:
+   - "5000:8080"
+  links:
+   - openidm-postgres:postgres

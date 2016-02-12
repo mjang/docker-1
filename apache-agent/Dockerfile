@@ -3,10 +3,10 @@ FROM httpd:2.4
 
 WORKDIR /opt
 
-ENV agent http://download.forgerock.org/downloads/openam/webagents/nightly/Linux/Apache_v24_Linux_64bit_4.0.0-SNAPSHOT.zip
+
+ADD agent.zip /var/tmp/agent.zip
 
 RUN apt-get update && apt-get install -y unzip curl && \
-     curl -o /var/tmp/agent.zip ${agent} && \
       unzip /var/tmp/agent.zip && rm /var/tmp/agent.zip && \
       echo "password" >/var/tmp/pw.txt  && chmod 0400 /var/tmp/pw.txt
 
