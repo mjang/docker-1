@@ -14,6 +14,7 @@ make
 
 
 These images will (eventually) get built using a Jenkins jobs that
+
  * Checks this repo out of git
  * Copies the relevant war or zip file from ForgeRock's maven repo
  * Performs a docker build, and tags the image
@@ -24,4 +25,4 @@ For instructions on how to run these images please see the README.md files in
 each directory.
 
 If you are interested in running on a Kubernetes cluster,
-see https://github.com/ForgeRock/fretes
+see  [here](https://github.com/ForgeRock/fretes)

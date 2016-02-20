@@ -17,7 +17,8 @@ if [ ! -d instances/instance1/config ] ; then
   mkdir -p instances/instance1
   echo "Instance Directory is empty. Creating new instance from template"
   cp -r instances/template/* instances/instance1
-  echo "./instances/instance1" > instance.loc
 fi
+echo "./instances/instance1" > instance.loc
+
 
 ./bin/start-ds --nodetach
