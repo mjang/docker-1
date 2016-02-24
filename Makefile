@@ -26,6 +26,10 @@ opendj:
 	./getnightly.sh $@
 	docker build -t $(REPO)/$@:$(TAG) $@
 
+openig:
+	./getnightly.sh $@
+	docker build -t $(REPO)/$@:$(TAG) $@
+
 ssoadm:
 	./getnightly.sh $@
 	docker build -t $(REPO)/$@:$(TAG) $@
@@ -33,7 +37,6 @@ ssoadm:
 ssoconfig:
 	./getnightly.sh $@
 	docker build -t $(REPO)/$@:$(TAG) $@
-
 
 apache-agent:
 	./getnightly.sh $@
