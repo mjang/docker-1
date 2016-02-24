@@ -2,7 +2,7 @@ FROM tomcat:8-jre8
 
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
-ENV JAVA_OPTS -Dopenig.base=/root/config
+ENV JAVA_OPTS -Dopenig.base=/root/openig
 WORKDIR $CATALINA_HOME
 
 EXPOSE 8080

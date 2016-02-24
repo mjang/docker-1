@@ -11,6 +11,7 @@ openidm-postgres:
     POSTGRES_PASSWORD: openidm
     POSTGRES_USER: openidm
 # Run openidm - linked to postgres container
+# Todo: Show an example of mounting Mac config volume for developement
 openidm-nightly:
   image: forgerock/openidm
   ports:

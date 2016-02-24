@@ -1,0 +1,15 @@
+# Sample docker-compose for openidm-postgres
+openig-nightly:
+  image: forgerock/openig:nightly
+  # 8080 is often used - so lets remap this to something else
+  ports:
+   - "5080:8080"
+  # Below is an example of mounting a volume so you can do
+  # Local development.
+  # Note on MacOS / Docker you need to setup Docker Machine so it
+  # shares and mounts your home directory onto the Docker Machine.
+  # This should be done for you..
+  # If your home dir is not mounted, the volumne mounts are relative to the VM - not your
+  # Mac
+  volumes:
+    - /Users/warren/.openig:/root/openig
