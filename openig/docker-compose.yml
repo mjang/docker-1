@@ -1,4 +1,10 @@
-# Sample docker-compose for openidm-postgres
+# Sample docker-compose for openig
+# Important note: The docker container that you deploy must
+# be able to reach any network IPs that your OpenIG config
+# might reference. This also included DNS resolution.
+# This might be different than what your host (e.g. Mac OS) can reach
+# This is where a Kubernetes deployment is going to make this easier
+# as it can wire up DNS and service reachability
 openig-nightly:
   image: forgerock/openig:nightly
   # 8080 is often used - so lets remap this to something else
