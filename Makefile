@@ -1,4 +1,4 @@
-.PHONY: clean download openam openidm opendj ssoadm ssoconfig
+.PHONY: clean download openam openidm opendj ssoadm ssoconfig openig
 
 TAG=nightly
 REPO=forgerock
