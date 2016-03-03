@@ -10,7 +10,7 @@
 TOOLS_HOME="/opt/ssoadm"
 EXT_CLASSPATH=$CLASSPATH
 
-cd $(TOOLS_HOME)
+cd "$TOOLS_HOME"
 
 # Check if ssoadm has been setup yet. Assumes openam install dir is on /root/openam
 if [ ! -d openam ]; then 
@@ -21,7 +21,6 @@ fi
 
 # Check for secrets volume
 if [ -a /secrets/amadmin.pw ]; then 
-    echo "Copying amadmin password"
     cat /secrets/amadmin.pw >pw
     chmod 0400 pw
 fi

@@ -1,4 +1,8 @@
 FROM java:8
+
+MAINTAINER warren.strange@forgerock.com
+
+
 WORKDIR /opt
 ADD https://raw.githubusercontent.com/ForgeRock/frstack/master/bin/getnightly.sh  /tmp/getnightly.sh
 RUN sh /tmp/getnightly.sh ssoadm && unzip staging/ssoadmintools.zip -d /opt/ssoadm && rm -fr /opt/staging
