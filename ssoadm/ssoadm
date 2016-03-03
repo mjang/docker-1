@@ -1,26 +1,28 @@
 #!/bin/bash
-# Modified version of ssoadm command 
-# This 
+# Modified version of ssoadm command
+# This
 # 1) checks to see if ssoadm is setup, and if not runs set up
-# 2) Adds  -Dsite to server option. Right now this is hard coded - super ugly - fix me
-# 3) This also optionally looks for a secret password on a k8s secret volume.
-#   This will get copied to /opt/ssoadm pw. Use ths for the -p password option.
+# 2) Adds  -Dsite to server option. Right now this is hard coded - super ugly - FIX ME
+# 3) This  optionally looks for a secret password on a k8s secret volume.
+#   This will get copied to /opt/ssoadm/pw. Use ths for the -p password option.
+#
+# We also add an option to use /dev/urandom as container have issues with /dev/random speed
+# See http://stackoverflow.com/questions/26021181/not-enough-entropy-to-support-dev-random-in-docker-containers-running-in-boot2d
 
-
-TOOLS_HOME="/opt/ssoadm"
+export TOOLS_HOME="/opt/ssoadm"
 EXT_CLASSPATH=$CLASSPATH
 
 cd "$TOOLS_HOME"
 
 # Check if ssoadm has been setup yet. Assumes openam install dir is on /root/openam
-if [ ! -d openam ]; then 
+if [ ! -d openam ]; then
     echo "Setting up ssoadm for the first time"
     ./setup --path /root/openam --debug /opt/ssoadm/debug \
-	   --log /opt/ssoadm/log --acceptLicense 	
+	   --log /opt/ssoadm/log --acceptLicense
 fi
 
 # Check for secrets volume
-if [ -a /secrets/amadmin.pw ]; then 
+if [ -a /secrets/amadmin.pw ]; then
     cat /secrets/amadmin.pw >pw
     chmod 0400 pw
 fi
@@ -36,7 +38,7 @@ CLASSPATH="$CLASSPATH:$LIB_CP"
 
 if [ -n "$EXT_CLASSPATH" ] ; then
     CLASSPATH=$EXT_CLASSPATH:$CLASSPATH
-fi              
+fi
 $JAVA_HOME/bin/java -Xms256m -Xmx512m -cp "$CLASSPATH" \
     $DEBUG \
     -D"sun.net.client.defaultConnectTimeout=3000" \
@@ -55,5 +57,6 @@ $JAVA_HOME/bin/java -Xms256m -Xmx512m -cp "$CLASSPATH" \
     -D"am.version.expected=OpenAM 13.0.0-SNAPSHOT" \
     -D"com.iplanet.am.sdk.package=com.iplanet.am.sdk.remote" \
     -D"com.sun.identity.idm.remote.notification.enabled=false" \
--D"com.iplanet.am.naming.map.site.to.server=http://openam.example.com:80/openam=http://openam-svc-a:80/openam" \
+    -Djava.security.egd=file:/dev/./urandom \
+    -D"com.iplanet.am.naming.map.site.to.server=http://openam.example.com:80/openam=http://openam:80/openam" \
     com.sun.identity.cli.CommandManager "$@"

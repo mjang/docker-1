@@ -6,9 +6,10 @@ WORKDIR /opt
 
 ADD agent.zip /var/tmp/agent.zip
 
-RUN apt-get update && apt-get install -y unzip curl && \
+RUN apt-get update && apt-get install --no-install-recommends  -y unzip curl && \
       unzip /var/tmp/agent.zip && rm /var/tmp/agent.zip && \
-      echo "password" >/var/tmp/pw.txt  && chmod 0400 /var/tmp/pw.txt
+      echo "password" >/var/tmp/pw.txt  && chmod 0400 /var/tmp/pw.txt && \
+      rm -rf /var/lib/apt/lists/*
 
 # Format of agentadmin command:
 # agentadmin --s "web-server configuration file, directory or site parameter" \
