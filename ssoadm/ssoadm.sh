@@ -5,12 +5,10 @@
 
 cd /opt/ssoadm
 
-./setup --path /root/openam --debug /opt/ssoadm/debug \\
-	--log /opt/ssoadm/log --acceptLicense 
-	
+./setup --path /root/openam --debug /opt/ssoadm/debug \
+	--log /opt/ssoadm/log --acceptLicense
 
 
+openam/bin/ssoadm list-servers -u amadmin -f pw
 
-openam/bin/ssoadm list-servers -u amadmin -f pw   
-
-./ssoadm list-servers -u amadmin -f pw   
+./ssoadm list-servers -u amadmin -f pw

@@ -15,7 +15,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 RUN echo "/opt/opendj/instances/template" > /opt/opendj/instance.loc  && \
     mkdir -p /opt/opendj/instances/template/lib/extensions
 
-# Note - for some reason the entire command must be quoted or DJ launches the GUI
+# Note -
 RUN /opt/opendj/setup --cli -p 389 --ldapsPort 636 --enableStartTLS --generateSelfSignedCertificate  --sampleData 5 --baseDN "dc=example,dc=com" -h localhost --rootUserPassword password --acceptLicense --no-prompt --doNotStart
 
 EXPOSE 389 636 4444
