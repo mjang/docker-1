@@ -17,6 +17,10 @@ RUN unzip /var/tmp/openidm.zip && \
 ADD repo.jdbc.json /opt/openidm/conf/repo.jdbc.json
 ADD datasource.jdbc-default.json /opt/openidm/conf/datasource.jdbc-default.json
 
-VOLUME ["/opt/openidm/conf"]
+# Remove custom startup once https://bugster.forgerock.org/jira/browse/OPENIDM-5435
+# is fixed
+ADD startup.sh /opt/openidm/startup.sh
+
+#VOLUME ["/opt/openidm/conf"]
 
 CMD ["/opt/openidm/startup.sh"]

@@ -1,7 +1,8 @@
 .PHONY: clean download openam openidm opendj ssoadm ssoconfig openig
 
-TAG=nightly
-REPO=forgerock
+# Override these with env vars to change the defaults
+TAG ?= nightly
+REPO ?=forgerock
 
 all: openam openidm opendj ssoadm ssoconfig apache-agent
 
