@@ -23,4 +23,6 @@ ADD startup.sh /opt/openidm/startup.sh
 
 #VOLUME ["/opt/openidm/conf"]
 
+WORKDIR /opt/openidm
+
 CMD ["/opt/openidm/startup.sh"]
