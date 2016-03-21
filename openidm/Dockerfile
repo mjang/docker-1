@@ -14,14 +14,13 @@ RUN unzip /var/tmp/openidm.zip && \
    rm -f /var/tmp/openidm.zip
 
 # Uncomment to use Postgres repo
-ADD repo.jdbc.json /opt/openidm/conf/repo.jdbc.json
-ADD datasource.jdbc-default.json /opt/openidm/conf/datasource.jdbc-default.json
+# NOTE: Preferred strategy now is to use a custom project dir. See startup.sh
+# ADD repo.jdbc.json /opt/openidm/conf/repo.jdbc.json
+# ADD datasource.jdbc-default.json /opt/openidm/conf/datasource.jdbc-default.json
 
 # Remove custom startup once https://bugster.forgerock.org/jira/browse/OPENIDM-5435
 # is fixed
 ADD startup.sh /opt/openidm/startup.sh
-
-#VOLUME ["/opt/openidm/conf"]
 
 WORKDIR /opt/openidm
 

@@ -12,9 +12,12 @@ openidm-postgres:
     POSTGRES_USER: openidm
 # Run openidm - linked to postgres container
 # Todo: Show an example of mounting Mac config volume for developement
+# You must create a customizations dir with the repo file for postgres, etc.
 openidm-nightly:
   image: forgerock/openidm
   ports:
    - "5000:8080"
   links:
    - openidm-postgres:postgres
+   environment:
+     OPENIDM_CUSTOM_DIR:  "FIX ME path to my customizations.."
