@@ -64,8 +64,8 @@ PROJECT_HOME=${OPENIDM_PROJECT_DIR:-$OPENIDM_HOME}
 
 # Check for OpenIDM customizations to be overlayed on top of OpenIDM project
 if [ -d "$OPENIDM_CUSTOM_DIR" ]; then
-echo "Copying customizations from $OPENIDM_CUSTOM_DIR"
-cp -R $OPENIDM_CUSTOM_DIR/ $PROJECT_HOME
+echo "Copying customizations from $OPENIDM_CUSTOM_DIR" to "$PROJECT_HOME"
+cp -Rfv $OPENIDM_CUSTOM_DIR/* $PROJECT_HOME
 fi
 
 CLOPTS=""
