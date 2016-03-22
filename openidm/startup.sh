@@ -60,6 +60,8 @@ PRGDIR=`dirname "$PRG"`
 
 # Set JDK Logger config file if it is present and an override has not been issued
 #PROJECT_HOME=$OPENIDM_HOME
+
+# If OPENIDM_PROJECT_DIR is set, use that instead
 PROJECT_HOME=${OPENIDM_PROJECT_DIR:-$OPENIDM_HOME}
 
 # Check for OpenIDM customizations to be overlayed on top of OpenIDM project
@@ -71,6 +73,14 @@ fi
 CLOPTS=""
 JPDA=""
 
+cd $PROJECT_HOME
+
+
+if [ -z ${OPENIDM_DB_URL+x}]; then
+echo "Setting up OpenIDM Repo DB connection"
+
+rm -f conf/
+fi
 
 while [ "$1" ]; do
     if [ "$1" = "jpda" ]; then
