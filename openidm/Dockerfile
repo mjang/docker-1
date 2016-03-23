@@ -23,6 +23,8 @@ RUN unzip /var/tmp/openidm.zip && \
 # is fixed
 ADD startup.sh /opt/openidm/startup.sh
 
+RUN rm -fr /opt/openidm/conf db 
+
 WORKDIR /opt/openidm
 
 CMD ["/opt/openidm/startup.sh"]
