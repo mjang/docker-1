@@ -11,7 +11,7 @@ EXPOSE 8080
 ADD openidm.zip /var/tmp/openidm.zip
 
 RUN unzip /var/tmp/openidm.zip && \
-   rm -f /var/tmp/openidm.zip
+   rm -f /var/tmp/openidm.zip  && rm -fr /opt/openidm/samples
 
 # Uncomment to use Postgres repo
 # It is better to mount a new /conf/ dir instead - to take direct control
