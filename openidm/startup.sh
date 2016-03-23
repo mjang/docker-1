@@ -73,15 +73,6 @@ fi
 CLOPTS=""
 JPDA=""
 
-cd $PROJECT_HOME
-
-
-if [ -z ${OPENIDM_DB_URL+x}]; then
-echo "Setting up OpenIDM Repo DB connection"
-
-rm -f conf/
-fi
-
 while [ "$1" ]; do
     if [ "$1" = "jpda" ]; then
         JPDA=$1
