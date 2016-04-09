@@ -2,3 +2,4 @@
 *.zip
 *.war
 staging/
+tmp/

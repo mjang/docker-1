@@ -73,7 +73,7 @@
                                     <artifactId>openam-server</artifactId>
                                     <version>${openamVersion}</version>
                                     <type>war</type>
-                                    <outputDirectory>${softwareDir}</outputDirectory>
+                                    <outputDirectory>openam</outputDirectory>
                                     <destFileName>openam.war</destFileName>
                                 </artifactItem>
                                 <artifactItem>
@@ -81,7 +81,7 @@
                                     <artifactId>openam-distribution-ssoadmintools</artifactId>
                                     <version>${openamVersion}</version>
                                     <type>zip</type>
-                                    <outputDirectory>${softwareDir}</outputDirectory>
+                                    <outputDirectory>ssoadm</outputDirectory>
                                     <destFileName>ssoadmintools.zip</destFileName>
                                 </artifactItem>
                                 <artifactItem>
@@ -89,7 +89,7 @@
                                     <artifactId>openam-distribution-ssoconfiguratortools</artifactId>
                                     <version>${openamVersion}</version>
                                     <type>zip</type>
-                                    <outputDirectory>${softwareDir}</outputDirectory>
+                                    <outputDirectory>openam</outputDirectory>
                                     <destFileName>ssoconfigtools.zip</destFileName>
                                 </artifactItem>
 
@@ -98,7 +98,7 @@
                                   <artifactId>opendj-server-legacy</artifactId>
                                   <version>${opendjVersion}</version>
                                   <type>zip</type>
-                                  <outputDirectory>${softwareDir}</outputDirectory>
+                                  <outputDirectory>opendj</outputDirectory>
                                   <destFileName>opendj.zip</destFileName>
                                 </artifactItem>
 
@@ -108,7 +108,7 @@
                                     <artifactId>openidm-zip</artifactId>
                                     <version>${openidmVersion}</version>
                                     <type>zip</type>
-                                    <outputDirectory>${softwareDir}</outputDirectory>
+                                    <outputDirectory>openidm</outputDirectory>
                                     <destFileName>openidm.zip</destFileName>
                                 </artifactItem>
 
@@ -118,7 +118,7 @@
                                   <artifactId>openig-war</artifactId>
                                   <version>${openigVersion}</version>
                                   <type>war</type>
-                                  <outputDirectory>${softwareDir}</outputDirectory>
+                                  <outputDirectory>openig</outputDirectory>
                                   <destFileName>openig.war</destFileName>
                                 </artifactItem>
 

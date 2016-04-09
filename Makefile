@@ -11,34 +11,30 @@ clean:
 	find . -name \*.zip -delete
 	find . -name \*.war -delete
 
-download_all:
-	./getnightly.sh
+download:
+	mvn package
 
-openam:
-	./getnightly.sh $@
+openam: download
 	docker build -t $(REPO)/$@:$(TAG) $@
 
-openidm:
-	./getnightly.sh $@
+openidm: download
 	docker build -t $(REPO)/$@:$(TAG) $@
 	docker build -t $(REPO)/openidm-postgres openidm-postgres
 
-opendj:
-	./getnightly.sh $@
+opendj: download
 	docker build -t $(REPO)/$@:$(TAG) $@
 
-openig:
-	./getnightly.sh $@
+openig: download
 	docker build -t $(REPO)/$@:$(TAG) $@
 
-ssoadm:
-	./getnightly.sh $@
+ssoadm: download
 	docker build -t $(REPO)/$@:$(TAG) $@
 
-ssoconfig:
-	./getnightly.sh $@
+ssoconfig: download
 	docker build -t $(REPO)/$@:$(TAG) $@
 
-apache-agent:
+# Note: Apache agent is not available via maven.
+# todo: get a stable download location
+apache-agent: download
 	./getnightly.sh $@
 	docker build -t $(REPO)/$@:$(TAG) $@

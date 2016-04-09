@@ -16,6 +16,11 @@
 # "Portions copyright [year] [name of copyright owner]".
 #
 
+
+echo "Sleeping ..."
+
+sleep 30
+
 JAVA_VER=$(java -version 2>&1 | sed 's/.* version "\(.*\)\.\(.*\)\..*"/\1\2/; 1q')
 if [ "$JAVA_VER" -lt 17 ]; then
   echo "Java version 1.7 or higher required";

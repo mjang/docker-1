@@ -21,4 +21,5 @@ openidm-nightly:
    - openidm-postgres:postgres
   volumes:
     - ~/src/k8s/stack-config:/opt/openidm/custom
-  command: /opt/openidm/startup.sh -p custom/openidm
+  #command: /opt/openidm/startup.sh -p custom/openidm
+  command: /opt/openidm/startup.sh 
