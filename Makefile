@@ -1,4 +1,4 @@
-.PHONY: clean download openam openidm opendj ssoadm ssoconfig openig
+.PHONY: clean download openam openidm opendj ssoadm ssoconfig openig apache-agent
 
 # Override these with env vars to change the defaults
 TAG ?= nightly
@@ -35,6 +35,6 @@ ssoconfig: download
 
 # Note: Apache agent is not available via maven.
 # todo: get a stable download location
-apache-agent: download
-	./getnightly.sh $@
+apache-agent:
+	curl "http://download.forgerock.org/downloads/openam/webagents/nightly/Linux/Apache_v24_Linux_64bit_4.0.0-SNAPSHOT.zip" -o apache-agent/agent.zip
 	docker build -t $(REPO)/$@:$(TAG) $@

@@ -18,12 +18,12 @@ RUN apt-get update && apt-get install --no-install-recommends  -y unzip curl && 
 #
 
 # Because we are running this before OpenAM is up and running we need to use the forceinstall option
-# We are using some defaults here (openam-svc) that are not going to exist in most environments
+# We are using some defaults here (openam service name) that are not going to exist in most environments
 # They will need to be overridden at runtime by updating the bootstrap files
 # A possible option is to have Docker create a host entry for openam-svc - but that seems kludgy...
 RUN /opt/web_agents/apache24_agent/bin/agentadmin --s /usr/local/apache2/conf/httpd.conf \
-        "http://openam-svc:80/openam" \
-        "http://apache-svc:80/" \
+        "http://openam:80/openam" \
+        "http://apache:80/" \
         "/" \
         "apacheagent" \
         /var/tmp/pw.txt \
