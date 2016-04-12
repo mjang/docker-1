@@ -25,7 +25,7 @@ function wait_for_openam
 	done
 	# Sleep an additonal time in case DJ is not quite up yet
 	echo "About to begin configuration in 30 seconds"
-	sleep 60
+	sleep 30
 }
 
 # Download config file at $1 URL and template ${ENV} variables in the output
@@ -45,7 +45,6 @@ function get_template
 	done
 }
 
-
 function apply_config {
 	for file in $1
 	do
@@ -63,6 +62,6 @@ function apply_config {
 # Fetch the AM template
 get_template $OPENAM_CONFIG_URL
 # Configure the server
-apply_config /tmp/am.properites
+apply_config /tmp/am.properties
 
 echo "done"
