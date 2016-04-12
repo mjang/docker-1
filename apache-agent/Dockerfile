@@ -23,13 +23,14 @@ RUN apt-get update && apt-get install --no-install-recommends  -y unzip curl && 
 # A possible option is to have Docker create a host entry for openam-svc - but that seems kludgy...
 RUN /opt/web_agents/apache24_agent/bin/agentadmin --s /usr/local/apache2/conf/httpd.conf \
         "http://openam:80/openam" \
-        "http://apache:80/" \
+        "http://apache-svc:80/" \
         "/" \
         "apacheagent" \
         /var/tmp/pw.txt \
         --changeOwner --acceptLicence --forceInstall
 
-COPY agent.conf /opt/web_agents/apache24_agent/instances/agent_1/config/agent.conf
+# todo: We should let above command create the conf file
+#COPY agent.conf /opt/web_agents/apache24_agent/instances/agent_1/config/agent.conf
 COPY run.sh /var/tmp/
 
 # Inherit CMD from Parent httpd:2.4
