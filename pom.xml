@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.forgerock.frstack</groupId>
-    <artifactId>fred</artifactId>
+    <artifactId>fretes</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -89,7 +89,7 @@
                                     <artifactId>openam-distribution-ssoconfiguratortools</artifactId>
                                     <version>${openamVersion}</version>
                                     <type>zip</type>
-                                    <outputDirectory>openam</outputDirectory>
+                                    <outputDirectory>ssoconfig</outputDirectory>
                                     <destFileName>ssoconfigtools.zip</destFileName>
                                 </artifactItem>
 

@@ -3,7 +3,7 @@ FROM java:8
 
 WORKDIR /var/tmp
 
-ADD ssoconfig.zip /var/tmp/ssoconfig.zip
+ADD ssoconfigtools.zip /var/tmp/ssoconfig.zip
 # Download AM configurator from maven build
 RUN  unzip ssoconfig.zip
 
