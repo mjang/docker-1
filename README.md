@@ -1,5 +1,9 @@
 # Docker build files for the ForgeRock stack
 
+##Warning
+**This code is not supported by ForgeRock and it is your responsibility to verify that the software is suitable and safe for use.**
+
+##About
 
 The provided Makefile downloads nightly builds from ForgeRock's maven repo
 and will build and tag the docker images
