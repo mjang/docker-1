@@ -22,9 +22,5 @@ EXPOSE 389 636 4444
 
 ADD run.sh /opt/opendj/run.sh
 
-# Copy in the template the first time DJ runs, and start DJ
 
 CMD ["/opt/opendj/run.sh"]
-
-# no longer used. see run.sh
-#CMD ["/opt/opendj/bin/start-ds","--nodetach"]

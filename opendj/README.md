@@ -9,7 +9,7 @@ All writable directories (persisted data) are collected up under /opt/opendj/ins
 To run with Docker (example)
 ```
 mkdir dj    # Make an instance dir to persist data
-docker run -i -t -v `pwd`/dj:/opt/opendj/instances/instance1 wstrange/opendj-nightly:latest
+docker run -i -t -v `pwd`/dj:/opt/opendj/instances/instance1 forgerock/opendj:latest
 ```
 
 For Kubernetes mount a PV on /opt/opendj/instance/instance1

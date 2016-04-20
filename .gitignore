@@ -3,3 +3,4 @@
 *.war
 staging/
 tmp/
+docker.iml
